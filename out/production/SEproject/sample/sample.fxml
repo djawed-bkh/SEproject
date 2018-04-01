@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="851.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fitHeight="851.0" fitWidth="857.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@k90421-750x750.jpg" />
+         </image>
+      </ImageView>
+      <SplitPane dividerPositions="0.3121319199057715, 0.6018845700824499, 0.8574793875147232" layoutX="4.0" layoutY="4.0" opacity="0.84" orientation="VERTICAL" prefHeight="851.0" prefWidth="850.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextField fx:id="tarrive" layoutX="125.0" layoutY="40.0" prefHeight="48.0" prefWidth="147.0" />
+                  <TextField fx:id="tbrust" layoutX="125.0" layoutY="107.0" prefHeight="48.0" prefWidth="147.0" />
+                  <Button fx:id="ajoutprocess" layoutX="87.0" layoutY="195.0" mnemonicParsing="false" onAction="#addproc" prefHeight="37.0" prefWidth="202.0" text="Add process to System" />
+                  <Label layoutX="4.0" layoutY="51.0" prefHeight="37.0" prefWidth="87.0" text="Arrival time" />
+                  <Label layoutY="112.0" prefHeight="37.0" prefWidth="87.0" text="Burst time" />
+                  <TableView fx:id="tprocess" layoutX="424.0" layoutY="17.0" prefHeight="228.0" prefWidth="347.0">
+                    <columns>
+                      <TableColumn fx:id="processcol" prefWidth="108.0" text="process" />
+                      <TableColumn fx:id="arrivalcol" prefWidth="120.0" text="arrival" />
+                        <TableColumn fx:id="burstcol" prefWidth="120.0" text="Burst" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="4.0" layoutY="3.0" prefHeight="29.0" prefWidth="231.0" text="         Input Data">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <ScrollBar layoutX="771.0" layoutY="17.0" orientation="VERTICAL" prefHeight="228.0" prefWidth="17.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="848.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="15.0" prefHeight="29.0" prefWidth="231.0" text="    Data visualisation">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="325.0" layoutY="14.0" prefHeight="136.0" prefWidth="509.0">
+                    <columns>
+                      <TableColumn prefWidth="142.0" text="Process" />
+                      <TableColumn minWidth="8.0" prefWidth="140.0" text="Temps debut" />
+                        <TableColumn minWidth="8.0" prefWidth="97.0" text="Qt/fin" />
+                        <TableColumn minWidth="8.0" prefWidth="127.0" text="Etat" />
+                    </columns>
+                  </TableView>
+                  <TableView layoutX="331.0" layoutY="150.0" prefHeight="84.0" prefWidth="454.0">
+                    <columns>
+                      <TableColumn prefWidth="120.0" text="/" />
+                      <TableColumn prefWidth="72.0" text="P1" />
+                        <TableColumn prefWidth="68.0" text="P2" />
+                        <TableColumn prefWidth="84.0" text="P3" />
+                        <TableColumn prefWidth="106.0" text="Moyenne" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="506.0" prefWidth="848.0">
+               <children>
+                  <Label layoutX="41.0" layoutY="31.0" prefHeight="29.0" prefWidth="231.0" text="         Input Data">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="45.0" layoutY="8.0" prefHeight="29.0" prefWidth="231.0" text="         Outputs">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
