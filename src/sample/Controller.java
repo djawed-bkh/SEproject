@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
-public class Controller implements Initializable,Runnable{
+public class Controller implements Initializable{
     static int actualtime=0;
     static int i=0;
     int temparrive ,tempburst,pc,tdure;
@@ -85,7 +85,7 @@ public class Controller implements Initializable,Runnable{
 
 
     // PANEL 2
-    final Handler handler = new Handler() {
+    /*final Handler handler = new Handler() {
         @Override
         public void publish(LogRecord record) {
 
@@ -100,7 +100,7 @@ public class Controller implements Initializable,Runnable{
         public void close() throws SecurityException {
 
         }
-    };
+    };*/
 
     public Controller(){
 
@@ -176,8 +176,14 @@ public class Controller implements Initializable,Runnable{
         dureecol.setCellValueFactory(cellData-> cellData.getValue().dureeProperty().asObject());
         }
 
+        Thread one = new Thread();
+
+
     @Override
     public void run() {
+        synchronized (this){
+
+        }
         temparrive= Integer.parseInt(tarrive.getText());
         tempburst=Integer.parseInt(tbrust.getText());
         pc=Integer.parseInt(tpc.getText());

@@ -4,156 +4,18 @@ package sample;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.concurrent.BlockingQueue;
+
 
 public class Algorithmes {
 
-    public void firstcomefirstserve(ObservableList<process> pro, int burst, int quantum, int arrival){
-        int currenttime=0;
-        int nprocess=pro.size();
-        ArrayList<process>waitinglist=new ArrayList<>();
-        //  manque
-        while (nprocess>0){
-            System.out.println("current time"+currenttime);
-            System.out.println("process filling phase:");
-
-            for (int i=0;i<pro.size();i++){
-                if (pro.get(i).getArrivalti()<=currenttime && !pro.get(i).isPassed()){
-                    waitinglist.add(pro.get(i));
-                    pro.get(i).setPassed(true);
-                    //line 33
-                }
-            }
-            System.out.println("process working phase:");
-            if (waitinglist.size()>0){
-                System.out.println("processus"+waitinglist.get(0).getName()+"is being processed");
-                currenttime+=waitinglist.get(0).getTempscpu();
-                waitinglist.get(0).processing(waitinglist.get(0).getTempscpu());
-                System.out.println("process"+waitinglist.get(0).getName()+"left the system");
-                int indexofprocessleaving=0;
-                while (waitinglist.get(0).getName() !=pro.get(indexofprocessleaving).getName()){
-                    ++indexofprocessleaving;
-                }
-                //50
-                pro.get(0).setExittime(currenttime);
-
-                waitinglist.remove(0);
-                --nprocess;
-                }else {
-                System.out.println("pas de process en attente");
-                ++currenttime;
-            }
-            if (pro.size()>0){
-                System.out.println("remaining pro:");
-                boolean check=false;
-                for (int i=0;i<pro.size();i++){
-                    if (!pro.get(i).isPassed()){
-                        System.out.println("process"+pro.get(i).getName());
-                        check=true;
-
-                    }
-                }
-                if (!check){
-                    System.out.println("no process remained");
-                }
-            }
-            //78
-        }
-
-    }
+    public boolean boolcpu=false;
+    public boolean booles=false;
+    public boolean tableautrier=false;
 
 
 
-    public void roundrobin(ObservableList<process> pro,int quantum){
-        int currentTime = 0;
-        int numberOfProcess = pro.size();
-
-        ArrayList<process> waitingList = new ArrayList<>();
-
-        //rr
-
-        while (numberOfProcess > 0) {
-
-            System.out.println("current time: " + currentTime);
-            System.out.println();
-            System.out.println("process filling phase:");
-
-            for (int i = 0; i < pro.size(); i++) {
-                //if the processus are arriving
-                if (pro.get(i).getArrivalti() <= currentTime && !pro.get(i).isPassed()) {
-                    System.out.println("the processus " + pro.get(i).getName() + " was added to the waiting list");
-                    waitingList.add(pro.get(i));
-                    pro.get(i).setPassed(true);
-                   //rr
-                }
-            }
-
-
-
-            System.out.println("process working phase:");
-            if (waitingList.size() > 0) {
-
-                currentTime += quantum;
-                System.out.println("processus " + waitingList.get(0).getName() + " is being processed...");
-                waitingList.get(0).processing(quantum);
-
-                if (waitingList.get(0).getTempscpu() > 0) {
-                    process p = waitingList.get(0);
-                    //waitingList.add(waitingList.size() - 1, waitingList.get(0));
-                    waitingList.remove(0);
-                    waitingList.add(p);
-                    System.out.println("processus " + waitingList.get(0).getName() + " is the head of the list");
-                    System.out.println("processus " + waitingList.get(waitingList.size() - 1).getName() + " is the tail of the list");
-                } else {
-                    System.out.println("processus " + waitingList.get(0).getName() + " has left the system");
-                    --numberOfProcess;
-                    int indexOfProcessLeaving = 0;
-                    while (waitingList.get(0).getName() != pro.get(indexOfProcessLeaving).getName()) {
-                        ++indexOfProcessLeaving;
-                    }
-
-                    //rr
-                    pro.get(0).setExittime(currentTime);
-                    waitingList.remove(0);
-                }
-
-
-            } else {
-                System.out.println("No processes available");
-                currentTime++;
-            }
-
-            //---------
-            System.out.println();
-
-            if (pro.size() > 0) {
-                System.out.println("remaining processes: ");
-                boolean check = false;
-
-                for (int i = 0; i < pro.size(); i++) {
-                    if (!pro.get(i).isPassed()) {
-                        System.out.println("Processus " + pro.get(i).getName());
-                        check = true;
-                    }
-                }
-
-                if (!check) {
-                    System.out.println("No Proceses remained");
-                }
-            }
-            System.out.println();
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-        public int plusproche(ObservableList<process> wait,int arrivaltime,int actualtime){
+       /* public int plusproche(ObservableList<process> wait,int arrivaltime,int actualtime){
             //voir qui est le plus proche du temps actuel
             int plusproche=wait.get(0).getArrivalti()-actualtime;
             int indice=0;
@@ -163,21 +25,64 @@ public class Algorithmes {
                 }
             }
             return indice;
-        }
+        }*/
 
+        //methode qui trie le tableau selon le plus petit arrival time
+        public void triwaiting(ObservableList<process>wait){
+            if (tableautrier==false){
+                for (int i=0;i<=wait.size();i++){
+                    for (int j=i+1;j<=wait.size();j++){
+                        if (wait.get(i).getArrivalti()<wait.get(j).getArrivalti()){
+                            process inter;
+                            inter=wait.get(j);
+                            wait.add(j,wait.get(i));
+                            wait.add(i,inter);
+                        }
+                    }
 
-    public void rr( ObservableList<process> wait,int quantum,int arrivaltime,int actualtime, ArrayList<process> finished){
-        int turnto=plusproche(wait,arrivaltime,actualtime);
-
-        while (wait.size()>0){
-            wait.get(turnto).setBrust(wait.get(turnto).getBrust()-quantum);
-            if (wait.get(turnto).getBrust()<=0){
+                }
             }
 
         }
 
 
+    public synchronized void rr( ObservableList<process> wait,int quantum,int arrivaltime,int actualtime, ArrayList<process> finished) throws InterruptedException {
+        int i;
+        triwaiting(wait);// si le tableau n'est pas trié une seule fois alors on le fais
+        for (i=0;i<=wait.size();i++){//pour parcourir toute la waiting list
+            while (boolcpu==true){
+                wait();
+            }
+            if (wait.get(i).getBrust()>0){
+                actualtime+=quantum;
+                wait.get(i).setBrust(wait.get(i).getBrust()-quantum);
+                wait.get(i).setTempsecoule(wait.get(i).getTempsecoule()+quantum);
+                if (wait.get(i).getTcp()>=wait.get(i).getTempsecoule() && !(wait.get(i).isPassedes())){
+                    //call fcfs algorithme
+                    fcfs(wait,quantum,arrivaltime,actualtime,i);
+                }else {
+                    wait.add(wait.get(i));
+                    wait.remove(i);
+                }
 
+
+
+            }else{
+                //terminé  //ajouter le status terminé
+            }
+
+        }
+        }
+
+
+        public synchronized void fcfs(ObservableList<process> wait,int quantum,int arrivaltime,int actualtime ,int i) throws InterruptedException {
+            while (booles==true){
+                wait();
+            }
+            wait.get(i).setPassedes(true);
+            actualtime+=wait.get(i).getDuree();
+
+        }
 
     }
 
@@ -226,4 +131,4 @@ public class Algorithmes {
 
 
 
-}
+

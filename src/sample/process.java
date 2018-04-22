@@ -9,6 +9,31 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class process {
+    public boolean isCpu() {
+        return cpu;
+    }
+
+    public void setCpu(boolean cpu) {
+        this.cpu = cpu;
+    }
+
+    public boolean isEs() {
+        return es;
+    }
+
+    public void setEs(boolean es) {
+        this.es = es;
+    }
+
+    public boolean isPassedes() {
+        return passedes;
+    }
+
+    public void setPassedes(boolean passedes) {
+        this.passedes = passedes;
+    }
+
+    private boolean passedes;
     private StringProperty name;
     private IntegerProperty arrivalti;
     private IntegerProperty brust;
@@ -16,18 +41,29 @@ public class process {
     private IntegerProperty tempscpu;
     private IntegerProperty tpc;
     private IntegerProperty duree;
-    private boolean passed;
+    private int tempsecoule=0;
+    private boolean cpu;
+    private boolean es;
    private ArrayList<Integer> estime;
  //getters and setters and constructor
 
+    public int getTempsecoule() {
+        return tempsecoule;
+    }
+
+    public void setTempsecoule(int tempsecoule) {
+        this.tempsecoule = tempsecoule;
+    }
+
     //constructors
     public process(){
+
     StringProperty name=this.name;
     IntegerProperty arrivalti=this.arrivalti;
     IntegerProperty brust=this.brust;
     }
 
-    public process(StringProperty name, IntegerProperty arrivalti, IntegerProperty brust, IntegerProperty exittime, IntegerProperty tempscpu, IntegerProperty tpc, IntegerProperty duree, boolean passed, ArrayList<Integer> estime) {
+    public process(StringProperty name, IntegerProperty arrivalti, IntegerProperty brust, IntegerProperty exittime, IntegerProperty tempscpu, IntegerProperty tpc, IntegerProperty duree, ArrayList<Integer> estime) {
         this.name = name;
         this.arrivalti = arrivalti;
         this.brust = brust;
@@ -35,7 +71,6 @@ public class process {
         this.tempscpu = tempscpu;
         this.tpc = tpc;
         this.duree = duree;
-        this.passed = passed;
         this.estime = estime;
     }
 
@@ -48,12 +83,7 @@ public class process {
     }
     //constructors
     //getters+setters
-    public boolean isPassed() {
-        return passed;
-    }
-    public void setPassed(boolean passed) {
-        this.passed = passed;
-    }
+
     public String getName() {
         return name.get();
     }
