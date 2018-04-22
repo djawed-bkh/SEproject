@@ -54,7 +54,6 @@
                           <MenuItem fx:id="sjfes" mnemonicParsing="false" onAction="#sjfmetes" text="sjf" />
                         </items>
                       </Menu>
-                      <Menu fx:id="quantum" mnemonicParsing="false" text="Quantum" />
                     </menus>
                   </MenuBar>
                   <TextField fx:id="quantumin" layoutX="115.0" layoutY="69.0" prefHeight="25.0" prefWidth="147.0" />
@@ -73,12 +72,12 @@
                                 <Font size="21.0" />
                             </font>
                         </Label>
-                        <TableView layoutX="325.0" layoutY="14.0" prefHeight="136.0" prefWidth="509.0">
+                        <TableView fx:id="results" layoutX="325.0" layoutY="14.0" prefHeight="136.0" prefWidth="509.0">
                             <columns>
-                                <TableColumn prefWidth="142.0" text="Process" />
-                                <TableColumn minWidth="8.0" prefWidth="140.0" text="Temps debut" />
-                                <TableColumn minWidth="8.0" prefWidth="97.0" text="Qt/fin" />
-                                <TableColumn minWidth="8.0" prefWidth="127.0" text="Etat" />
+                                <TableColumn fx:id="presult" prefWidth="142.0" text="Process" />
+                                <TableColumn fx:id="tdebut" minWidth="8.0" prefWidth="140.0" text="Temps debut" />
+                                <TableColumn fx:id="tfin" minWidth="8.0" prefWidth="97.0" text="Qt/fin" />
+                                <TableColumn fx:id="etat" minWidth="8.0" prefWidth="127.0" text="Etat" />
                             </columns>
                         </TableView>
                         <TableView layoutX="331.0" layoutY="150.0" prefHeight="84.0" prefWidth="454.0">

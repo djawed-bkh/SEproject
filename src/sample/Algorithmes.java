@@ -28,7 +28,7 @@ public class Algorithmes {
         }*/
 
         //methode qui trie le tableau selon le plus petit arrival time
-        public void triwaiting(ObservableList<process>wait){
+        public  void triwaiting(ObservableList<process>wait){
             if (tableautrier==false){
                 for (int i=0;i<=wait.size();i++){
                     for (int j=i+1;j<=wait.size();j++){
@@ -46,7 +46,7 @@ public class Algorithmes {
         }
 
 
-    public synchronized void rr( ObservableList<process> wait,int quantum,int arrivaltime,int actualtime, ArrayList<process> finished) throws InterruptedException {
+   /* public synchronized void rr( ObservableList<process> wait,int quantum,int arrivaltime,int actualtime, ArrayList<process> finished) throws InterruptedException {
         int i;
         triwaiting(wait);// si le tableau n'est pas trié une seule fois alors on le fais
         for (i=0;i<=wait.size();i++){//pour parcourir toute la waiting list
@@ -82,7 +82,7 @@ public class Algorithmes {
             wait.get(i).setPassedes(true);
             actualtime+=wait.get(i).getDuree();
 
-        }
+        }*/
 
     }
 

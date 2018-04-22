@@ -1,14 +1,18 @@
+package sample;
+
 import javafx.collections.ObservableList;
-import sample.Algorithmes;
-import sample.process;
 
 import java.util.ArrayList;
 
-public class RR extends Thread {
+public class RRsjf {
+    //initialisations
     public boolean boolcpu=false;
     public boolean booles=false;
     public boolean tableautrier=false;
     Algorithmes a=new Algorithmes();
+    //initialisations
+
+
 
     public synchronized void rr(ObservableList<process> wait, int quantum, int arrivaltime, int actualtime, ArrayList<process> finished) throws InterruptedException {
         int i;
@@ -23,7 +27,7 @@ public class RR extends Thread {
                 wait.get(i).setTempsecoule(wait.get(i).getTempsecoule()+quantum);
                 if (wait.get(i).getTcp()>=wait.get(i).getTempsecoule() && !(wait.get(i).isPassedes())){
                     //call fcfs algorithme
-                    fcfs(wait,quantum,arrivaltime,actualtime,i);
+                    //sjf alorithme
                 }else {
                     wait.add(wait.get(i));
                     wait.remove(i);
@@ -37,12 +41,4 @@ public class RR extends Thread {
 
         }
     }
-
-
-    public synchronized void fcfs(ObservableList<process> wait,int quantum,int arrivaltime,int actualtime ,int i) throws InterruptedException {
-        while (booles==true){
-            wait();
-        }
-        wait.get(i).setPassedes(true);
-        actualtime+=wait.get(i).getDuree();
-}}
+}

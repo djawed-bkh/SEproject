@@ -54,7 +54,6 @@
                           <MenuItem fx:id="sjfes" mnemonicParsing="false" onAction="#sjfmetes" text="sjf" />
                         </items>
                       </Menu>
-                      <Menu fx:id="quantum" mnemonicParsing="false" text="Quantum" />
                     </menus>
                   </MenuBar>
                   <TextField fx:id="quantumin" layoutX="115.0" layoutY="69.0" prefHeight="25.0" prefWidth="147.0" />

@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
-public class Controller implements Initializable{
+public class Controller implements Initializable,Runnable{
     static int actualtime=0;
     static int i=0;
     int temparrive ,tempburst,pc,tdure;
@@ -113,6 +113,10 @@ public class Controller implements Initializable{
     //Threads
     @FXML
     void menubaraction(ActionEvent event) {
+
+
+
+
         /*ToggleGroup tGroup=new ToggleGroup();
         RadioMenuItem rr=new RadioMenuItem("Round Robin");
         rr.setToggleGroup(tGroup);
@@ -139,12 +143,13 @@ public class Controller implements Initializable{
 
     @FXML
     void roundrobin(ActionEvent event) {
-
+        System.out.println("rr methode");
     }
 
     @FXML
     void sjfmet(ActionEvent event) {
-
+        System.out.println("sjf methode");
+        waitinglist.add(new process());
     }
     @FXML
     void fcfsmet(ActionEvent event) {
@@ -153,7 +158,7 @@ public class Controller implements Initializable{
 
     @FXML
     void sjfmetes(ActionEvent event) {
-
+        System.out.println("sjf methode");
     }
 
 
@@ -174,9 +179,11 @@ public class Controller implements Initializable{
         burstcol.setCellValueFactory(cellData-> cellData.getValue().BrustProprety().asObject());
         pccol.setCellValueFactory(cellData-> cellData.getValue().tpcProperty().asObject());
         dureecol.setCellValueFactory(cellData-> cellData.getValue().dureeProperty().asObject());
+        presult.setCellValueFactory(cellData-> cellData.getValue().nameProperty());
+        tdebut.setCellValueFactory(cellData-> cellData.getValue().arrivalProprety().asObject());
+        etat.setCellValueFactory(cellData-> cellData.getValue().nameProperty());
+        tfin.setCellValueFactory(cellData-> cellData.getValue().arrivalProprety().asObject());
         }
-
-        Thread one = new Thread();
 
 
     @Override
@@ -193,4 +200,5 @@ public class Controller implements Initializable{
 
         tprocess.setItems(observablepersonne);
     }
+
 }
