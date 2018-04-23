@@ -44,6 +44,7 @@ public class process {
     private int tempsecoule=0;
     private boolean cpu;
     private boolean es;
+    private StringProperty etat;
    private ArrayList<Integer> estime;
  //getters and setters and constructor
 
@@ -55,15 +56,8 @@ public class process {
         this.tempsecoule = tempsecoule;
     }
 
-    //constructors
-    public process(){
-
-    StringProperty name=this.name;
-    IntegerProperty arrivalti=this.arrivalti;
-    IntegerProperty brust=this.brust;
-    }
-
-    public process(StringProperty name, IntegerProperty arrivalti, IntegerProperty brust, IntegerProperty exittime, IntegerProperty tempscpu, IntegerProperty tpc, IntegerProperty duree, ArrayList<Integer> estime) {
+    public process(boolean passedes, StringProperty name, IntegerProperty arrivalti, IntegerProperty brust, IntegerProperty exittime, IntegerProperty tempscpu, IntegerProperty tpc, IntegerProperty duree, int tempsecoule, boolean cpu, boolean es, StringProperty etat, ArrayList<Integer> estime) {
+        this.passedes = passedes;
         this.name = name;
         this.arrivalti = arrivalti;
         this.brust = brust;
@@ -71,7 +65,19 @@ public class process {
         this.tempscpu = tempscpu;
         this.tpc = tpc;
         this.duree = duree;
+        this.tempsecoule = tempsecoule;
+        this.cpu = cpu;
+        this.es = es;
+        this.etat = etat;
         this.estime = estime;
+    }
+
+    //constructors
+    public process(){
+
+    StringProperty name=this.name;
+    IntegerProperty arrivalti=this.arrivalti;
+    IntegerProperty brust=this.brust;
     }
 
     public process(String name, int arrivalti, int brust, int tpc,int duree) {
@@ -177,6 +183,18 @@ public class process {
     /*public IntegerProperty brustProperty() {
         return brust
     };*/
+
+    public String getEtat() {
+        return etat.get();
+    }
+
+    public StringProperty etatProperty() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat.set(etat);
+    }
     //getters+setters
 
     //getters and setters

@@ -3,15 +3,11 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.Initializable;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 public class Controller implements Initializable,Runnable{
     static int actualtime=0;
@@ -65,8 +61,7 @@ public class Controller implements Initializable,Runnable{
     @FXML
     private ObservableList<process> observablepersonne = FXCollections.observableArrayList();
     @FXML
-    private ObservableList<process> inputOutputPersonne  = FXCollections.observableArrayList();
-    private ArrayList<process> waitinglist;
+    private ObservableList<process> waitinglist  = FXCollections.observableArrayList();
 
     // PANNEL1
     // PANEL 2
@@ -85,22 +80,7 @@ public class Controller implements Initializable,Runnable{
 
 
     // PANEL 2
-    /*final Handler handler = new Handler() {
-        @Override
-        public void publish(LogRecord record) {
 
-        }
-
-        @Override
-        public void flush() {
-
-        }
-
-        @Override
-        public void close() throws SecurityException {
-
-        }
-    };*/
 
     public Controller(){
 
@@ -109,26 +89,13 @@ public class Controller implements Initializable,Runnable{
 
     //Threads
 
-    Thread addpro=new Thread();
+
     //Threads
     @FXML
     void menubaraction(ActionEvent event) {
 
 
 
-
-        /*ToggleGroup tGroup=new ToggleGroup();
-        RadioMenuItem rr=new RadioMenuItem("Round Robin");
-        rr.setToggleGroup(tGroup);
-        rr.setSelected(true);
-
-        RadioMenuItem sjf=new RadioMenuItem("Sjf");
-        sjf.setToggleGroup(tGroup);
-        sjf.setSelected(true);
-        quantum.getItems().addAll(rr,sjf,new SeparatorMenuItem());
-
-        menuBar.getMenus().addAll(systeme);
-       // menuBar.addEventHandler(new EventType<>());*/
     }
 
 
@@ -165,8 +132,10 @@ public class Controller implements Initializable,Runnable{
         public void addwainting(){
         for (int i=0;i<=observablepersonne.size();i++){
             if (actualtime>=observablepersonne.get(i).getArrivalti()){
+                observablepersonne.get(i).setEtat("waiting");
                 waitinglist.add(observablepersonne.get(i));
                 observablepersonne.remove(i);
+                results.setItems(waitinglist);
             }
         }
         }
@@ -179,10 +148,11 @@ public class Controller implements Initializable,Runnable{
         burstcol.setCellValueFactory(cellData-> cellData.getValue().BrustProprety().asObject());
         pccol.setCellValueFactory(cellData-> cellData.getValue().tpcProperty().asObject());
         dureecol.setCellValueFactory(cellData-> cellData.getValue().dureeProperty().asObject());
+
         presult.setCellValueFactory(cellData-> cellData.getValue().nameProperty());
         tdebut.setCellValueFactory(cellData-> cellData.getValue().arrivalProprety().asObject());
-        etat.setCellValueFactory(cellData-> cellData.getValue().nameProperty());
-        tfin.setCellValueFactory(cellData-> cellData.getValue().arrivalProprety().asObject());
+        etat.setCellValueFactory(cellData-> cellData.getValue().etatProperty());
+        tfin.setCellValueFactory(cellData-> cellData.getValue().exittimeProperty().asObject());
         }
 
 
@@ -196,8 +166,8 @@ public class Controller implements Initializable,Runnable{
         pc=Integer.parseInt(tpc.getText());
         tdure=Integer.parseInt(tduree.getText());
         observablepersonne.add(new process("porcess"+i++,temparrive,tempburst,pc,tdure));
-
-
+        waitinglist.add(observablepersonne.get(i));
+        results.setItems(waitinglist);
         tprocess.setItems(observablepersonne);
     }
 

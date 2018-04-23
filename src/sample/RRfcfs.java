@@ -22,7 +22,7 @@ public class RRfcfs extends Thread {
                     wait.get(i).setBrust(wait.get(i).getBrust()-quantum);
                     wait.get(i).setTempsecoule(wait.get(i).getTempsecoule()+quantum);
                     if (wait.get(i).getTcp()>=wait.get(i).getTempsecoule() && !(wait.get(i).isPassedes())){
-                        //call fcfs algorithme
+                        fcfs(wait,quantum,arrivaltime,actualtime,i);
                         fcfs(wait,quantum,arrivaltime,actualtime,i);
                     }else {
                         wait.add(wait.get(i));
