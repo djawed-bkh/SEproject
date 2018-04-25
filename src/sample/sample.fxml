@@ -10,16 +10,16 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="851.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="927.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AceuilleController">
     <children>
         <ImageView fitHeight="851.0" fitWidth="954.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@k90421-750x750.jpg" />
             </image>
         </ImageView>
-        <SplitPane dividerPositions="0.4758539458186101" layoutX="4.0" layoutY="4.0" opacity="0.84" orientation="VERTICAL" prefHeight="851.0" prefWidth="923.0">
+        <SplitPane layoutX="4.0" layoutY="4.0" opacity="0.84" orientation="VERTICAL" prefHeight="433.0" prefWidth="923.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="740.0" prefWidth="921.0">
                     <children>
                         <TextField fx:id="tarrive" layoutX="115.0" layoutY="106.0" prefHeight="25.0" prefWidth="147.0" />
                         <TextField fx:id="tbrust" layoutX="115.0" layoutY="142.0" prefHeight="29.0" prefWidth="147.0" />
@@ -44,14 +44,10 @@
                     <menus>
                       <Menu fx:id="systeme" mnemonicParsing="false" onAction="#menubaraction" text="Systeme">
                         <items>
-                              <MenuItem fx:id="rr" mnemonicParsing="false" onAction="#roundrobin" text="Round Robin" />
-                          <MenuItem fx:id="sjf" mnemonicParsing="false" onAction="#sjfmet" text="sjf" />
-                        </items>
-                      </Menu>
-                      <Menu fx:id="es" mnemonicParsing="false" text="E/S">
-                        <items>
-                              <MenuItem fx:id="fcfs" mnemonicParsing="false" onAction="#fcfsmet" text="fcfs" />
-                          <MenuItem fx:id="sjfes" mnemonicParsing="false" onAction="#sjfmetes" text="sjf" />
+                              <MenuItem fx:id="setffcfs" mnemonicParsing="false" onAction="#stffcfs" text="SETF+FCFS" />
+                              <MenuItem fx:id="setfsjf" mnemonicParsing="false" onAction="#setfsjf" text="SETF+SJF" />
+                              <MenuItem fx:id="rrfcfs" mnemonicParsing="false" onAction="#rrfcfs" text="RR+fcfs" />
+                          <MenuItem fx:id="rrsjf" mnemonicParsing="false" onAction="#rrsjf" text="RR+SJF" />
                         </items>
                       </Menu>
                     </menus>
@@ -63,33 +59,9 @@
                   <Label layoutX="14.0" layoutY="186.0" prefHeight="37.0" prefWidth="87.0" text="E/S prise en compte" />
                   <Label layoutX="5.0" layoutY="229.0" prefHeight="37.0" prefWidth="96.0" text="   E/S  durée" />
                   <Label layoutX="14.0" layoutY="63.0" prefHeight="37.0" prefWidth="87.0" text="Quantum" />
+                  <Button fx:id="demarrer" layoutX="625.0" layoutY="336.0" mnemonicParsing="false" onAction="#demare" prefHeight="37.0" prefWidth="110.0" text="Demarrer" />
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="314.0" prefWidth="921.0">
-                    <children>
-                        <Label layoutX="52.0" layoutY="15.0" prefHeight="29.0" prefWidth="231.0" text="    Data visualisation">
-                            <font>
-                                <Font size="21.0" />
-                            </font>
-                        </Label>
-                        <TableView fx:id="results" layoutX="325.0" layoutY="14.0" prefHeight="136.0" prefWidth="509.0">
-                            <columns>
-                                <TableColumn fx:id="presult" prefWidth="142.0" text="Process" />
-                                <TableColumn fx:id="tdebut" minWidth="8.0" prefWidth="140.0" text="Temps debut" />
-                                <TableColumn fx:id="tfin" minWidth="8.0" prefWidth="97.0" text="Qt/fin" />
-                                <TableColumn fx:id="etat" minWidth="8.0" prefWidth="127.0" text="Etat" />
-                            </columns>
-                        </TableView>
-                        <TableView layoutX="331.0" layoutY="150.0" prefHeight="84.0" prefWidth="454.0">
-                            <columns>
-                                <TableColumn prefWidth="120.0" text="/" />
-                                <TableColumn prefWidth="72.0" text="P1" />
-                                <TableColumn prefWidth="68.0" text="P2" />
-                                <TableColumn prefWidth="84.0" text="P3" />
-                                <TableColumn prefWidth="106.0" text="Moyenne" />
-                            </columns>
-                        </TableView>
-                    </children></AnchorPane>
             </items>
         </SplitPane>
     </children>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="526.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WorkController">
+   <children>
+      <TableView fx:id="wait" layoutX="287.0" layoutY="14.0" prefHeight="200.0" prefWidth="451.0">
+        <columns>
+          <TableColumn fx:id="tpro" prefWidth="130.0" text="Process" />
+          <TableColumn fx:id="tarrive" prefWidth="125.0" text="Temps Arrivée" />
+            <TableColumn fx:id="qtfin" prefWidth="108.0" text="QT/fin" />
+            <TableColumn fx:id="etat" prefWidth="86.0" text="Etat" />
+        </columns>
+      </TableView>
+      <Button fx:id="retour" layoutX="648.0" layoutY="442.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="121.0" text="Retour" />
+      <Label layoutX="23.0" layoutY="256.0" prefHeight="32.0" prefWidth="121.0" text="   Turn around=" />
+      <Label fx:id="turnaround" layoutX="160.0" layoutY="256.0" prefHeight="32.0" prefWidth="89.0" text="Label" />
+   </children>
+</AnchorPane>
