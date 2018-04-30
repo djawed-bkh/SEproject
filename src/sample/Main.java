@@ -18,8 +18,9 @@ public class Main extends Application {
     private Menu quantum;*/
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+        System.out.println("marche main");
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        System.out.println("marche main 1");
         primaryStage.setTitle("homework");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);

@@ -20,10 +20,9 @@ public class AceuilleController implements Initializable{
     static int actualtime=0;
     static int algo;
     static int i=0;
-    int temparrive ,tempburst,pc,tdure;
-    private int quantumvariable=1;
-    //initialisations + constructor
-    // PANNEL1
+    static int temparrive ,tempburst,pc,tdure;
+    static int quantumvariable=1;
+    //initialisations
     @FXML
     private TextField tarrive;
 
@@ -62,7 +61,8 @@ public class AceuilleController implements Initializable{
     private MenuBar menuBar=new MenuBar();
     @FXML
     private MenuItem setfsjf;
-
+    @FXML
+    private MenuItem vider;
     @FXML
     private MenuItem rrsjf;
 
@@ -71,21 +71,18 @@ public class AceuilleController implements Initializable{
     @FXML
     private MenuItem setffcfs;
     @FXML
+    private MenuItem random;
+    @FXML
     private TableColumn<process,Integer> burstcol;
     @FXML
     private TableColumn<process, Integer> dureecol;
     @FXML
     private TableColumn<process,Integer > pccol;
     @FXML
-    private ObservableList<process> observablepersonne = FXCollections.observableArrayList();
+     static ObservableList<process> observablepersonne = FXCollections.observableArrayList();
     @FXML
     private ObservableList<process> waitinglist  = FXCollections.observableArrayList();
 
-    // PANNEL1
-
-    public AceuilleController(){
-
-    }
     //initialisations
 
     @FXML
@@ -96,14 +93,14 @@ public class AceuilleController implements Initializable{
     }
 
 
-    //rajouter des données au tableau
-    public void inittable(){
+
+    public void inittable(){ //methode pour rajouter des données au tableau
 
         temparrive= Integer.parseInt(tarrive.getText());
         tempburst=Integer.parseInt(tbrust.getText());
         pc=Integer.parseInt(tpc.getText());
         tdure=Integer.parseInt(tduree.getText());
-        observablepersonne.add(new process("porcess"+i++,temparrive,tempburst,pc,tdure));
+        observablepersonne.add(new process("porcess"+i++,temparrive,tempburst,pc,tdure,0,0,"terminé"));
         tprocess.setItems(observablepersonne);
     }
 
@@ -117,27 +114,9 @@ public class AceuilleController implements Initializable{
         quantumvariable= Integer.parseInt(quantumin.getText());
     }
 
-    @FXML
-    void stffcfs(ActionEvent event) {
-        algo=1;
-    }
 
     @FXML
-    void setfsjf(ActionEvent event) {
-        algo=2;
-    }
-
-    @FXML
-    void rrfcfs(ActionEvent event) {
-        algo=3;
-    }
-
-    @FXML
-    void rrsjf(ActionEvent event) {
-        algo=4;
-    }
-    @FXML
-    void demare(ActionEvent event) throws IOException {
+    void demare(ActionEvent event) throws IOException, InterruptedException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         System.out.println("verification");
         Parent root = FXMLLoader.load(getClass().getResource("/sample/work.fxml"));
@@ -146,23 +125,31 @@ public class AceuilleController implements Initializable{
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
-        //lalgo a utiliser
+       /*switch (algo){
+           case 1:;break;
+           case 2:;break;
+         case 3:f1.fcfs(observablepersonne,quantumvariable,actualtime,WorkController.finished);break;
+           case 4:;break;
+       }*/
     }
 
 
-        public void addwainting(){
-        for (int i=0;i<=observablepersonne.size();i++){
-            if (actualtime>=observablepersonne.get(i).getArrivalti()){
-                observablepersonne.get(i).setEtat("waiting");
-               // waitinglist.add(observablepersonne.get(i));
-                observablepersonne.remove(i);
-               // results.setItems(waitinglist);
-            }
-        }
-        }
+
+       @FXML
+       void vider(ActionEvent event) { // methode qui vide le tableau
+                observablepersonne.removeAll(observablepersonne);
+       }
+    @FXML
+    void remprand(ActionEvent event) {    // methode pour remplir le tableau automatiquement
+           for (int i=0;i<=10;i++){
+               observablepersonne.add(new process("porcessrand"+i,5+i,10+i,20-i,5+i,0,0,"terminé"));
+               tprocess.setItems(observablepersonne);
+           }
+
+    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {  // methode pour initialiser le table view
         System.out.println("marche1");
         processcol.setCellValueFactory(cellData-> cellData.getValue().nameProperty());
         arrivalcol.setCellValueFactory(cellData-> cellData.getValue().arrivalProprety().asObject());

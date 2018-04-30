@@ -42,12 +42,10 @@
                         </Label>
                   <MenuBar fx:id="menubar" layoutX="3.0" prefHeight="29.0" prefWidth="914.0">
                     <menus>
-                      <Menu fx:id="systeme" mnemonicParsing="false" onAction="#menubaraction" text="Systeme">
+                      <Menu fx:id="systeme" mnemonicParsing="false" onAction="#menubaraction" text="Parametres">
                         <items>
-                              <MenuItem fx:id="setffcfs" mnemonicParsing="false" onAction="#stffcfs" text="SETF+FCFS" />
-                              <MenuItem fx:id="setfsjf" mnemonicParsing="false" onAction="#setfsjf" text="SETF+SJF" />
-                              <MenuItem fx:id="rrfcfs" mnemonicParsing="false" onAction="#rrfcfs" text="RR+fcfs" />
-                          <MenuItem fx:id="rrsjf" mnemonicParsing="false" onAction="#rrsjf" text="RR+SJF" />
+                              <MenuItem fx:id="vider" mnemonicParsing="false" onAction="#vider" text="Reintialiser le tableau" />
+                              <MenuItem fx:id="random" mnemonicParsing="false" onAction="#remprand" text="remplir en mode aleatoire" />
                         </items>
                       </Menu>
                     </menus>
